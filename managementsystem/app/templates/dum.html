@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <title>{% block title %} {% endblock %}</title>
+    {% block css %}
+    {% endblock %}
+    <style>
+        .navbar {
+        width: 100%;
+        background-color:deepskyblue;
+        overflow: auto;
+        margin: auto;
+        
+    }
+.navbar a {
+  float: left;
+  padding: 10px;
+  color:ghostwhite;
+
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.navbar a:hover {
+  background-color:aliceblue;
+  color: black;
+  border-radius: 12px;
+
+}
+
+.active {
+  border-radius: 12px;
+}
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+        <div class="w3-bar ">
+            <a href="/app/" class="w3-bar-item w3-button " style="color: rgb(145, 9, 145); font-family: 'Courier New', Courier, monospace;"> library management</a> 
+            <a href="/pass/" class="w3-bar-item w3-button">change password</a> 
+            <a href="/profile/" class="w3-bar-item w3-button"> profile</a> 
+            <a href="/app/third" class="w3-bar-item w3-button"> books</a>
+            <a href="/" class="w3-bar-item w3-button"> logout</a> 
+            <a href="/">Go back</a>
+        </div>
+        <!-- <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>  -->
+  
+      </div>
+      {% block body %}
+      {% endblock %}
+    {% block js %}
+    <script>
+      $(document).ready(function () {
+        $('#example').DataTable({
+          dom: 'Bfrtip',
+          buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+          ]
+        });
+      });
+    </script>
+    {% endblock %}
+  </body>
+</html>

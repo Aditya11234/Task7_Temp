@@ -1,0 +1,60 @@
+{% extends 'dum.html' %}
+{% load static %}
+{% block title %} Change Password {% endblock %}
+{% block css %}
+{% endblock %}
+
+{% block body %}
+<form method="POST" name="change_password" onsubmit="return checkPassword()">
+    {% csrf_token %}
+    <div class=>
+        <div class=>
+            <label><i style="font-weight: bold;">Username</i></label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text"  name="username" value="{{request.user}}" readonly>
+        </div>
+        <div class=>
+            <label><i style="font-weight: bold;">Current Password</i></label> &nbsp;&nbsp;&nbsp;
+            <input type="password"  name="current_password" placeholder="Current Password">
+        </div>
+    </div>
+
+    <div >
+        <div >
+            <label><i style="font-weight: bold;">New Password</i></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="password"  name="new_password" placeholder="Enter the new password">
+        </div>
+    </div>
+
+    <div class=>
+        <div >
+            <label><i style="font-weight: bold;">Confirm Password</i></label>&nbsp;&nbsp;&nbsp;
+            <input type="password" name="confirm_password" placeholder="Confirm the new password">
+        </div>
+    </div>
+
+    <input type="submit" class="btn btn-outline-primary mt-4" value="Update Password">
+</form>
+{% endblock %}
+
+{% block js %}
+<script>
+    function checkPassword() {
+        if (document.change_password.new_password.value != document.change_password.confirm_password.value) {
+            alert("New Password and Confirm Password fields does not match each other.");
+            document.change_password.confirm_password.focus();
+            return false;
+        }
+        return true;
+    }
+
+    {% if alert %}
+    alert("Password Updated Successfully.");
+    document.location = "/logout"
+    {% endif %}
+
+    {% if currpasswrong %}
+    alert("Current Password is wrong..");
+    document.location = "/log"
+    {% endif %}
+</script>
+{% endblock %}
